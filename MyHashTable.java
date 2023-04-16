@@ -9,7 +9,7 @@ public class MyHashTable {
 	private int size;
 
 	public MyHashTable() {
-		numBuckets = 10; // can be any prime number
+		numBuckets = 31; // can be any prime number
 		bucketArray = new LinkedList[numBuckets];
 		for (int i = 0; i < numBuckets; i++) {
 			bucketArray[i] = new LinkedList<MyMapNode>();
@@ -18,7 +18,7 @@ public class MyHashTable {
 
 	private int getBucketIndex(String key) {
 		int hashCode = key.hashCode();
-		int index = hashCode % numBuckets;
+		int index = Math.abs(hashCode) % numBuckets;
 		return index;
 	}
 
@@ -52,7 +52,7 @@ public class MyHashTable {
 	}
 
 	public static void main(String[] args) {
-		String sentence = "To be or not to be";
+		String sentence = "Paranoids are not paranoid because they are paranoid but because they keep putting themselves deliberately into paranoid avoidable situations";
 		MyHashTable map = new MyHashTable();
 
 		// split the sentence into words and add them to the hash table
